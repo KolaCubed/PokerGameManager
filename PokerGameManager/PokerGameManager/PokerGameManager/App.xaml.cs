@@ -1,16 +1,26 @@
-﻿using System;
+﻿using PokerGameManager.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace PokerGameManager
 {
     public partial class App : Application
     {
+        public static string DatabasePath;
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new GamesPage());
+        }
+
+        public App(string databasePath)
+        {
+            InitializeComponent();
+
+            DatabasePath = databasePath;
+
+            MainPage = new NavigationPage(new GamesPage());
         }
 
         protected override void OnStart()
