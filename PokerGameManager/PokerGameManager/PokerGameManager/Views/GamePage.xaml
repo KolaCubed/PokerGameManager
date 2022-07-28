@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PokerGameManager.ViewModels;assembly=PokerGameManager"
+             x:Class="PokerGameManager.Views.GamePage"
+             Title="Game Details">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:GameVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Remove" Command="{Binding Source={StaticResource vm}, Path=RemoveGameCommand}"/>
+        <ToolbarItem Text="{Binding Source={StaticResource vm}, Path=Action}"
+                     Command="{Binding Source={StaticResource vm}, Path=ActionCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout BindingContext="{Binding Source={StaticResource vm}, Path=Game}"
+                     Margin="16">
+            <Label Text="{Binding Name}" FontSize="Medium"/>
+            <StackLayout BindingContext="{Binding Source={StaticResource vm}, Path=.}">
+                <Label Text="{Binding PlayedTime}" FontSize="Large"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

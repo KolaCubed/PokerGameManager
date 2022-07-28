@@ -4,6 +4,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Environment = System.Environment;
+using System.IO;
 
 namespace PokerGameManager.Droid
 {
@@ -16,7 +18,12 @@ namespace PokerGameManager.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+
+            var dbName = "pgm_db.db3";
+            var folderPath = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var fullPath = Path.Combine(folderPath, dbName);
+
+            LoadApplication(new App(fullPath));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

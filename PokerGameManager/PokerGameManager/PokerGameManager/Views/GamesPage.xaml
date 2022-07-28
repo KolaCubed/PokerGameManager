@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PokerGameManager.ViewModels;assembly=PokerGameManager"
+             xmlns:bh="clr-namespace:PokerGameManager.Behaviors;assembly=PokerGameManager"
+             x:Class="PokerGameManager.Views.GamesPage"
+             Title="Games Page">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:GamesVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Create" Command="{Binding Source={StaticResource vm}, Path=NewGameCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Games}"
+                  Margin="16">
+            <ListView.Behaviors>
+                <bh:GameListViewBehavior/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Name}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
