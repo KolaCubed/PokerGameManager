@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/PokerGameManager/.vs/PokerGameManager
+/PokerGameManager/PokerGameManager/PokerGameManager/obj
+/PokerGameManager/PokerGameManager/PokerGameManager.Android/obj
+/PokerGameManager/PokerGameManager/PokerGameManager.iOS/obj
