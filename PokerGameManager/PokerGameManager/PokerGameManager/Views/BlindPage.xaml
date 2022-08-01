@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PokerGameManager.ViewModels"
+             x:Class="PokerGameManager.Views.BlindPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:BlindVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding Source={StaticResource vm}, Path=SaveCommand}"/>
+        <ToolbarItem Text="+" Command="{Binding Source={StaticResource vm}, Path=AddCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Level" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Grid.Column="1" Text="Small"/>
+                <Label Grid.Column="2" Text="Big"/>
+            </Grid>
+            <ListView ItemsSource="{Binding Source={StaticResource vm}, Path=Items}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding Level}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Entry Grid.Column="1" Text="{Binding Small}"/>
+                                <Entry Grid.Column="2" Text="{Binding Big}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -11,7 +11,7 @@ namespace PokerGameManager
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new GamesPage());
+            MainPage = OpeningPage();
         }
 
         public App(string databasePath)
@@ -20,7 +20,13 @@ namespace PokerGameManager
 
             DatabasePath = databasePath;
 
-            MainPage = new NavigationPage(new GamesPage());
+            MainPage = OpeningPage();
+        }
+
+        public NavigationPage OpeningPage()
+        {
+            Data.Configure.Default();
+            return new NavigationPage(new GamesPage());
         }
 
         protected override void OnStart()

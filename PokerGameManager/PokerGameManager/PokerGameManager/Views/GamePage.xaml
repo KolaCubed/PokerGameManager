@@ -23,6 +23,8 @@
             <Label Text="{Binding Name}" FontSize="Medium"/>
             <StackLayout BindingContext="{Binding Source={StaticResource vm}, Path=.}">
                 <Label Text="{Binding PlayedTime}" FontSize="Large"/>
+                <Label Text="{Binding CurrentLevel}" FontSize="Medium"/>
+                <Label Text="{Binding Remaining}" FontSize="Large"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

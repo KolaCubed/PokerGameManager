@@ -14,6 +14,14 @@ namespace PokerGameManager.Models
 
         public TimeSpan PlayedTime { get; set; }
 
+        public TimeSpan BlindsDuration { get; set; }
+
+        public TimeSpan Remaining { get; set; }
+
+        public int CurrentLevel { get; set; }
+
+
+
         public static int InsertGame(Game game)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabasePath))

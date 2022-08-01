@@ -11,7 +11,9 @@ namespace PokerGameManager.ViewModels
         private Game _game;
         private TimeSpan _playedTime;
         private readonly Timer _timer = new Timer(1000);
-        
+
+        public int CurrentLevel => Game.CurrentLevel;
+
         public GameVM()
         {
             RemoveGameCommand = new Command(async () =>
@@ -35,6 +37,13 @@ namespace PokerGameManager.ViewModels
                 {
                     case "Start":
                         Action = "Pause";
+
+                        if (Game.CurrentLevel == 0)
+                        {
+                            // Set rundown timer to blind level time
+                            Game.Remaining = Game.BlindsDuration;
+                        }
+
                         _timer.Start();
                         break;
                     case "Pause":
@@ -49,6 +58,10 @@ namespace PokerGameManager.ViewModels
             _timer.Elapsed += (sender, args) =>
             {
                 PlayedTime += TimeSpan.FromSeconds(1);
+                Game.Remaining -= TimeSpan.FromSeconds(1);
+
+                // Timer Logic
+
                 Game.PlayedTime = PlayedTime;
             };
         }
